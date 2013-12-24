@@ -13,15 +13,12 @@ SPELLOPTS = -d en_GB
 
 all: pdf
 
-doc:
-	$(RUBBER) $(DOC).tex
-
 view: viewpdf
 
 print: pdf
 	$(PRINT) $(DOC).pdf
 
-pdf:
+pdf: vc.tex
 	$(RUBBER) $(DOC).tex
 
 viewpdf: pdf
@@ -29,6 +26,7 @@ viewpdf: pdf
 
 clean:
 	rm -f *.aux $(DOC).{toc,out,lol,lof,pdf,log,idx,ilg,ind}
+	rm -rf vc.tex
 	rm -rf .AppleDouble
 
 spell:
@@ -38,15 +36,9 @@ commit: clean
 	$(VCS) commit .
 	$(VCS) push origin master
 
-# this needs testing
-# it's a leftover from SVN days
-# better to use texlive-latex-git-log-doc with git, I guess
-#changelog: commit
-#	$(VCS) update
-#	$(VCS) log --xml | xsltproc -o changelog-tmp.tex svnlog.xslt -
-#	echo "\chapter{Changelog}" > changelog.tex
-#	cat changelog-tmp.tex >> changelog.tex
-#	rm changelog-tmp.tex
+# use latex-git-log to create a changelog file
+vc.tex:
+	latex-git-log --lang=en > vc.tex
 
-update:
-	$(VCS) update
+pull:
+	$(VCS) pull
