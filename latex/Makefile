@@ -39,6 +39,8 @@ commit: clean
 	$(VCS) push origin master
 
 # this needs testing
+# it's a leftover from SVN days
+# better to use texlive-latex-git-log-doc with git, I guess
 #changelog: commit
 #	$(VCS) update
 #	$(VCS) log --xml | xsltproc -o changelog-tmp.tex svnlog.xslt -
