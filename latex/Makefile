@@ -18,15 +18,15 @@ view: viewpdf
 print: pdf
 	$(PRINT) $(DOC).pdf
 
-pdf: vc.tex
+pdf: 
 	$(RUBBER) $(DOC).tex
 
 viewpdf: pdf
 	$(ACROREAD) $(DOC).pdf
 
 clean:
-	rm -f *.aux $(DOC).{toc,out,lol,lof,pdf,log,idx,ilg,ind}
-	rm -rf vc.tex
+	rm -f *.aux $(DOC).{toc,out,lol,lof,pdf,log,idx,ilg,ind,dvi}
+	rm -rf gitlog.tex
 	rm -rf .AppleDouble
 
 spell:
@@ -37,8 +37,9 @@ commit: clean
 	$(VCS) push origin master
 
 # use latex-git-log to create a changelog file
-vc.tex:
-	latex-git-log --lang=en > vc.tex
+# not enabled by default as it's not perfect, esp at end of doc
+gitlog:
+	latex-git-log --lang=en --width=14 > gitlog.tex
 
 pull:
 	$(VCS) pull
