@@ -9,7 +9,7 @@ Qt, Qt Quick and the supporting tools are developed as an open source project go
 So there were good reasons to choose Qt as framework, no doubt about that. As of now you can develop for Android, iOS, BlackBerry and of course SailfishOS. If you look into the documentation and examples of all these platforms, you will find that those examples assume, that you are developing for this platform only. Quite stupid, if you use the Qt framework. Understandable if you think about the effort that would be necessary to build a documentation that incorporates all other possible platforms. For some time now I was wondering how I should organize my code in such a way, that allows me to develop for more than one target platform at a time. It's not just compiling for another platform! Each platform has a unique UI that behaves in an own different way, e.g. SailfishOS is gesture based, other ones are touch based.
 In the long run you will create an UI for each of those targets. Period. Patterns like MVC\cite{wiki01} will come to mind, using separate business logic, yada yada.
 
-To cut a long story short, why am I writing about this stuff, this section is supposed to be about tools? When you prepare a software project for the use for more than one target platform, you will start organizing stuff differently. Maybe you use folders that have the name of the targets to differentiate stuff that's platform dependent. Maybe you even create a business logic that is really unique and capsulated in such clever way that it can be reused and does not know anything about the outside world. Such a business logic or model can be driven from tests, command line tools, web or different native UIs. Would be nice to have it in a separate folder or even subproject. If you start to move and/or rename things, your tools will break. Intentionally.
+To cut a long story short, why am I writing about this stuff, this section is supposed to be about tools? When you prepare a software project for the use for more than one target platform, you will start organizing stuff differently. Maybe you use folders that have the name of the targets to differentiate stuff that's platform dependent. Maybe you even create a business logic that is really unique and encapsulated in such clever way that it can be reused and does not know anything about the outside world. Such a business logic or model can be driven from tests, command line tools, web or different native UIs. Would be nice to have it in a separate folder or even subproject. If you start to move and/or rename things, your tools will break. Intentionally.
 
 By examining those fractures you can learn a lot about your tools that otherwise work so silently in the background. So go on and break your tools!\footnote{Ok, not so short :-)}
 
@@ -422,7 +422,7 @@ If you run \verb,qmake, it will build a \verb,Makefile, which contains the rules
 INSTALLS += target qml desktop icon
 \end{lstlisting}
 %
-Then there are the remaining three as above self defined install sets \verb,qmk,, \verb,dektop, and \verb,icon,. When you \verb,make, your application the install sets will be processed in the given order.
+Then there are the remaining three as above self defined install sets \verb,qmk,, \verb,desktop, and \verb,icon,. When you \verb,make, your application the install sets will be processed in the given order.
 
 This tells \verb,qmake, to make use of an external library that is supported by \nameref{subsubsec:pkgconfig}. The name of the external library is \verb,sailfishapp,.
 %
@@ -876,7 +876,7 @@ The \emph{Run environment} represents the environment variables that are visible
 %
 To see them, you must start the emulator and click on the $\vcenter{\hbox{\includegraphics[scale=0.6]{../media/gfx/QtCreator/FetchDeviceEnvironmentButton.png}}}$ button.
 %
-The \emph{Analyzer Settings} are clearly for \verb,valgrind, a static analyzer tool. I haven't used it one the emulator yet and on OSX Mountain Lion it does not run anymore. I'd prefer \verb,clang, which is AFAIK not available on the SDK.
+The \emph{Analyzer Settings} are clearly for \verb,valgrind, a static analyzer tool. I haven't used it one the emulator yet and on OSX Mountain Lion it does not run any more. I'd prefer \verb,clang, which is AFAIK not available on the SDK.
 
 The \emph{Debugger Settings} are for TODO (the checkboxes are pretty cleat that it's about switching debugger support on and off but I haven't used it in this environment so far - so I don't make things up here).
 
